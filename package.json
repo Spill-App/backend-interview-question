@@ -1,0 +1,32 @@
+{
+    "name": "movie-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+        "build": "rimraf ./dist && tsc",
+        "start": "npm run build && node dist/server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@eslint/js": "^9.27.0",
+        "@types/node": "^22.15.21",
+        "eslint": "^9.27.0",
+        "rimraf": "^6.0.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.32.1"
+    },
+    "dependencies": {
+        "@apollo/server": "^4.12.1",
+        "@aws-sdk/client-dynamodb": "^3.817.0",
+        "@aws-sdk/lib-dynamodb": "^3.817.0",
+        "dotenv": "^16.5.0",
+        "graphql": "^16.11.0",
+        "graphql-scalars": "^1.24.2",
+        "reflect-metadata": "^0.2.2",
+        "type-graphql": "^2.0.0-rc.2"
+    }
+}
