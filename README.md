@@ -1,42 +1,44 @@
-# Backend Developer Technical Take-Home Challenge: Movie API Service
-In this challenge, you'll build a JavaScript backend service that provides movie data via GraphQL, storing data in DynamoDB.
+# Movies API - Spill Take Home Test
 
-# Submission Deadline
-Please send back by the emailed submission deadline.
+A GraphQL API for managing movies built with NestJS and DynamoDB.
 
-# Time Allocation
-Please do not spend more than 4 hours on this challenge. We value your time and understand this constraint will result in a focused implementation.
+## Prerequisites
 
-# Challenge Requirements
-Create a JavaScript backend service that:
-- Provides a GraphQL API for querying popular movies
-- Provides GraphQL functionality to fetch detailed movie information
-- Stores and retrieves data from DynamoDB
+- Node.js (v22 preferentially)
+- Docker (for running DynamoDB Local)
 
-# Technical Guidelines
-- Implement using Node.js
-- Create a local DynamoDB instance
-- Design appropriate table schema for movie data
-- Design a clear and effective GraphQL Schema
-    - Query for fetching a list of popular movies
-    - Query for fetching a specific movie by ID
-    - Request for creating a new movie
-    - Request for updating/editing a movie
+## Getting Started
 
-# Additional Notes
-- Feel free to use any packages that you find helpful
-- Given the time constraint, focus on implementing the core features with clean code rather than adding extra functionality
-- Include documentation for running locally
+1. Clone the repository:
+```bash
+git clone git@github.com:arthurbz/spill-take-home-test.git
+cd spill-take-home-test
+```
 
-# Evaluation Criteria
-Your submission will be evaluated based on:
-- Functionality: Does the GraphQL API meet the core requirements?
-- Code Quality: Is the code clean, well-organized, and maintainable?
-- Architecture: Is there a clear architectural approach?
-- Performance: Is the API efficient and well-optimized?
+2. Install dependencies:
+```bash
+npm install
+```
 
+3. Start DynamoDB Local using Docker:
+```bash
+docker-compose up -d
+```
 
-# Other interesting things to look into
-- What is a Global Secondary Index and how might you use it with this API?
-- What happens if someone wants to make multiple updates at once?
-- What is a scan vs a query? 
+4. Start the development server:
+```bash
+npm run start:dev
+```
+
+The API will be available at `http://localhost:3000/graphql`
+
+## GraphQL Playground
+
+Once the server is running, you can access the GraphQL Playground at `http://localhost:3000/graphql` to test the API.
+
+# Demo
+
+This is a video showcasing the project working locally.
+
+https://github.com/user-attachments/assets/9d36f1f4-2d30-4f9c-a81f-acb5ee46d140
+
