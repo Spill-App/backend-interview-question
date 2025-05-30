@@ -6,6 +6,7 @@ import {
   GetCommand,
   UpdateCommand,
   DynamoDBDocumentClient,
+  DeleteCommand,
 } from "@aws-sdk/lib-dynamodb";
 
 import { DYNAMO_DB_DOC_CLIENT } from "../database/dynamodb.provider";
@@ -150,5 +151,22 @@ export class MoviesService {
       createdAt: new Date(result.Attributes.createdAt as string),
       updatedAt: new Date(result.Attributes.updatedAt as string),
     };
+  }
+
+  async delete(id: string) {
+    const movie = await this.findOne(id);
+
+    if (!movie) {
+      throw new NotFoundException(`Movie with ID ${id} not found`);
+    }
+
+    await this.docClient.send(
+      new DeleteCommand({
+        TableName: "Movies",
+        Key: { id },
+      }),
+    );
+
+    return true;
   }
 }

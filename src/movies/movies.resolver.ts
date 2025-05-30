@@ -38,4 +38,9 @@ export class MoviesResolver {
   updateMovie(@Args("input") input: UpdateMovieInput) {
     return this.moviesService.update(input);
   }
+
+  @Mutation(() => Boolean)
+  deleteMovie(@Args("id") id: string) {
+    return this.moviesService.delete(id);
+  }
 }

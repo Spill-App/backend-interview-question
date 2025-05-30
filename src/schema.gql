@@ -30,6 +30,7 @@ input FindHighestRatedMovies {
 type Mutation {
   createMovie(input: CreateMovieInput!): Movie!
   updateMovie(input: UpdateMovieInput!): Movie!
+  deleteMovie(id: String!): Boolean!
 }
 
 input CreateMovieInput {
