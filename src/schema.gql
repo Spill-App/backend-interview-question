@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Movie {
+  id: ID!
+  title: String!
+  director: String!
+  rating: Float!
+  genre: String
+  releaseDate: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  movies: [Movie!]!
+  movie(id: String!): Movie!
+  moviesByRating(input: FindHighestRatedMovies!): [Movie!]!
+  moviesByComplexFilter(input: ComplexFilterInput!): [Movie!]!
+}
+
+input FindHighestRatedMovies {
+  minRating: Float!
+  quantity: Int! = 0
+}
+
+input ComplexFilterInput {
+  genre: String
+  minRating: Float
+  maxRating: Float
+  minYear: Int
+  maxYear: Int
+}
+
+type Mutation {
+  createMovie(input: CreateMovieInput!): Movie!
+  updateMovie(input: UpdateMovieInput!): Movie!
+  deleteMovie(id: String!): Boolean!
+}
+
+input CreateMovieInput {
+  title: String!
+  director: String!
+  rating: Float!
+  releaseDate: DateTime!
+  genre: String
+}
+
+input UpdateMovieInput {
+  id: String!
+  title: String
+  director: String
+  rating: Float
+}
