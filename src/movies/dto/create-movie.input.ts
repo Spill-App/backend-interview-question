@@ -1,5 +1,5 @@
-import { InputType, Field, Float } from "@nestjs/graphql";
-import { IsNotEmpty, IsString, Min, Max } from "class-validator";
+import { InputType, Field, Float, GraphQLISODateTime } from "@nestjs/graphql";
+import { IsNotEmpty, IsString, Min, Max, IsDate, IsOptional } from "class-validator";
 
 @InputType()
 export class CreateMovieInput {
@@ -16,4 +16,13 @@ export class CreateMovieInput {
   @Min(0)
   @Max(10)
   rating: number;
+
+  @Field(() => GraphQLISODateTime)
+  @IsDate()
+  releaseDate: Date;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  @IsString()
+  genre?: string;
 }

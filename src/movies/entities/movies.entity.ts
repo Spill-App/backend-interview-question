@@ -15,6 +15,12 @@ export class Movie {
   @Field(() => Float)
   rating: number;
 
+  @Field(() => String, { nullable: true })
+  genre: string;
+
+  @Field(() => GraphQLISODateTime, { nullable: true })
+  releaseDate: Date;
+
   @Field(() => GraphQLISODateTime)
   createdAt: Date;
 

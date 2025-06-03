@@ -7,6 +7,8 @@ type Movie {
   title: String!
   director: String!
   rating: Float!
+  genre: String
+  releaseDate: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -20,6 +22,7 @@ type Query {
   movies: [Movie!]!
   movie(id: String!): Movie!
   moviesByRating(input: FindHighestRatedMovies!): [Movie!]!
+  moviesByComplexFilter(input: ComplexFilterInput!): [Movie!]!
 }
 
 input FindHighestRatedMovies {
@@ -27,15 +30,26 @@ input FindHighestRatedMovies {
   quantity: Int! = 0
 }
 
+input ComplexFilterInput {
+  genre: String
+  minRating: Float
+  maxRating: Float
+  minYear: Int
+  maxYear: Int
+}
+
 type Mutation {
   createMovie(input: CreateMovieInput!): Movie!
   updateMovie(input: UpdateMovieInput!): Movie!
+  deleteMovie(id: String!): Boolean!
 }
 
 input CreateMovieInput {
   title: String!
   director: String!
   rating: Float!
+  releaseDate: DateTime!
+  genre: String
 }
 
 input UpdateMovieInput {
