@@ -8,6 +8,7 @@ import { MoviesService } from "./movies.service";
 import { CreateMovieInput } from "./dto/create-movie.input";
 import { UpdateMovieInput } from "./dto/update-movie.input";
 import { FindHighestRatedMovies } from "./dto/find-highest-rated-movies.input";
+import { ComplexFilterInput } from "./dto/complex-filter.input";
 
 @Resolver(() => Movie)
 export class MoviesResolver {
@@ -27,6 +28,11 @@ export class MoviesResolver {
   @Query(() => [Movie])
   moviesByRating(@Args("input") input: FindHighestRatedMovies) {
     return this.moviesService.findHighestRatedMovies(input);
+  }
+
+  @Query(() => [Movie])
+  moviesByComplexFilter(@Args("input") input: ComplexFilterInput) {
+    return this.moviesService.findByComplexFilter(input);
   }
 
   @Mutation(() => Movie)
