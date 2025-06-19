@@ -35,6 +35,20 @@ pnpm run dev
 
 The server will be available at http://localhost:4000
 
+### 4. Seed the database (optional, for local development)
+```
+pnpm run seed
+```
+
+This will populate DynamoDB Local with sample movies.
+
+### 5. Run tests
+```
+pnpm test
+```
+
+This will run all unit and integration tests for the application.
+
 ## DynamoDB Table
 The Movies table is created automatically on server start.
 
@@ -95,5 +109,7 @@ mutation {
 ## Notes
 - Uses Apollo Server 3 and AWS SDK v2
 - DynamoDB Local runs in-memory and resets on restart
-- Focused on core functionality for the take-home challenge 
+- Focused on core functionality for the take-home challenge
+- Includes comprehensive unit and integration tests (see `src/app/services/movieService.test.ts`, `src/app/graphql/resolvers.test.ts`, and typeDefs tests)
+- To run everything locally, you only need Docker (or Docker Compose), Node.js, and pnpm
 
