@@ -1,42 +1,99 @@
-# Backend Developer Technical Take-Home Challenge: Movie API Service
-In this challenge, you'll build a JavaScript backend service that provides movie data via GraphQL, storing data in DynamoDB.
+# Movie API Service
 
-# Submission Deadline
-Please send back by the emailed submission deadline.
+A Node.js backend service providing a GraphQL API for movie data, using DynamoDB for storage.
 
-# Time Allocation
-Please do not spend more than 4 hours on this challenge. We value your time and understand this constraint will result in a focused implementation.
+## Features
+- Query popular movies
+- Fetch detailed movie info by ID
+- Create and update movies
+- Data stored in DynamoDB (local)
 
-# Challenge Requirements
-Create a JavaScript backend service that:
-- Provides a GraphQL API for querying popular movies
-- Provides GraphQL functionality to fetch detailed movie information
-- Stores and retrieves data from DynamoDB
+## Setup
 
-# Technical Guidelines
-- Implement using Node.js
-- Create a local DynamoDB instance
-- Design appropriate table schema for movie data
-- Design a clear and effective GraphQL Schema
-    - Query for fetching a list of popular movies
-    - Query for fetching a specific movie by ID
-    - Request for creating a new movie
-    - Request for updating/editing a movie
-
-# Additional Notes
-- Feel free to use any packages that you find helpful
-- Given the time constraint, focus on implementing the core features with clean code rather than adding extra functionality
-- Include documentation for running locally
-
-# Evaluation Criteria
-Your submission will be evaluated based on:
-- Functionality: Does the GraphQL API meet the core requirements?
-- Code Quality: Is the code clean, well-organized, and maintainable?
-- Architecture: Is there a clear architectural approach?
-- Performance: Is the API efficient and well-optimized?
+### 1. Install dependencies
+```
+pnpm install
+```
 
 
-# Other interesting things to look into
-- What is a Global Secondary Index and how might you use it with this API?
-- What happens if someone wants to make multiple updates at once?
-- What is a scan vs a query? 
+### 2. Start DynamoDB Local using Docker
+```
+docker run -p 8000:8000 amazon/dynamodb-local
+```
+
+Or do it through Docker Compose
+```
+docker-compose up -d
+```
+
+This will start DynamoDB Local in the background on port 8000.
+
+### 3. Start the GraphQL server
+```
+pnpm run dev
+```
+
+The server will be available at http://localhost:4000
+
+## DynamoDB Table
+The Movies table is created automatically on server start.
+
+## Example GraphQL Queries
+
+### Query popular movies
+```graphql
+query {
+  popularMovies(limit: 5) {
+    id
+    title
+    popularity
+  }
+}
+```
+
+### Query a movie by ID
+```graphql
+query {
+  movie(id: "MOVIE_ID") {
+    id
+    title
+    description
+    releaseDate
+    popularity
+  }
+}
+```
+
+### Create a new movie
+```graphql
+mutation {
+  createMovie(input: {
+    title: "Inception"
+    description: "A mind-bending thriller."
+    releaseDate: "2010-07-16"
+    popularity: 9.8
+  }) {
+    id
+    title
+  }
+}
+```
+
+### Update a movie
+```graphql
+mutation {
+  updateMovie(id: "MOVIE_ID", input: {
+    popularity: 10.0
+  }) {
+    id
+    title
+    popularity
+  }
+}
+```
+
+## Notes
+- Uses Apollo Server 3 and AWS SDK v2
+- DynamoDB Local runs in-memory and resets on restart
+- Focused on core functionality for the take-home challenge 
+
